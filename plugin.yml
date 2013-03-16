@@ -1,7 +1,7 @@
-name: ZweiBooks BETA v0.3
-version: 0.3
+name: ZweiBooks
+version: 2.0
 author: Zweisicht
-website: http://zweisicht.at.com
+website: http://zweisicht.at
 
 main: me.zweisicht.zweibooks.ZweiBooks
 
@@ -9,6 +9,12 @@ commands:
   banbook:
     description:  Zeigt euch alle Gebannten Spieler an.
     usage:  /<command>
+  book:
+    description: Erstellt euch ein beschriebenes Buch.
+    usage:  /<command>
   rulesbook:
-    description:  Zeigt euch die Regeln vom Server an.
+    description: Erstellt das Regelbuch.
+    usage:  /<command>
+  booklist:
+    description: Zeigt die Liste der Buecher an.
     usage:  /<command>

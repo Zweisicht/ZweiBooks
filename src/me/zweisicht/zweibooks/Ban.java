@@ -9,18 +9,14 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.BookMeta;
 
 public class Ban {
 
-	public static boolean CreateBook(CommandSender sender) {
+	public static void Banbook(CommandSender sender) {
 		
-		Player p = (Player) sender;
 		OfflinePlayer[] banlist = Bukkit.getServer().getBannedPlayers().toArray(new OfflinePlayer[0]);
 		List<String> pages = new ArrayList<String>();
 		
@@ -47,8 +43,6 @@ public class Ban {
 			 }else{
 				 strPage = strPage + "\n" + (x +1) + ". " + sortBanList.get(x);
 			 }
-			
-			 System.out.println(x);
 			 
 			 //Blätter hinzufügen.
 			 if(x == 14  * pageCounter -1) {
@@ -62,17 +56,7 @@ public class Ban {
 			}
 			 
 		 }
-		
-		ItemStack book = new ItemStack(Material.WRITTEN_BOOK);
-		BookMeta meta = (BookMeta)book.getItemMeta();
-		meta.setTitle("Banbook");
-		meta.setAuthor("ZweiBooks");
-		meta.setPages(pages);
-
-		
-		book.setItemMeta(meta);
-		p.getInventory().addItem(book);
-		return false;
+		CreateBook.CreateIt("Banbook", pages, (Player) sender);
 	}
 	
 	public static String convertSimple(int i) {
