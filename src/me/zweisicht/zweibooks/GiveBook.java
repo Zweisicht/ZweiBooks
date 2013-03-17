@@ -7,11 +7,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 
-public class CreateBook {
+public class GiveBook {
 	
-	public static void CreateIt(String bookTitel, List<String> pages, Player player) {
+	public static void CreateIt(String bookTitel, List<String> pages, Player player, Material bookTyp) {
 		
-		ItemStack book = new ItemStack(Material.WRITTEN_BOOK);
+		ItemStack book = new ItemStack(bookTyp);
 		BookMeta meta = (BookMeta)book.getItemMeta();
 		meta.setTitle(bookTitel);
 		meta.setAuthor("ZweiBooks");

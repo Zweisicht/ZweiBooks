@@ -10,11 +10,20 @@ commands:
     description:  Zeigt euch alle Gebannten Spieler an.
     usage:  /<command>
   book:
-    description: Erstellt euch ein beschriebenes Buch.
-    usage:  /<command>
+    description: Ein beschriebenes Buch.
+    usage:  /<command> [Spieler] [Buch]
   rulesbook:
-    description: Erstellt das Regelbuch.
+    description: Das Regelbuch.
     usage:  /<command>
   booklist:
     description: Zeigt die Liste der Buecher an.
+    usage:  /<command>
+  copybook:
+    description: Das Buch in der Hand wird gespeichert.
+    usage:  /<command>
+  editbook:
+    description: Editiert das Buch.
+    usage:  /<command> [Buch]
+  givebook:
+    description: Gibt einen Spieler ein Buch.
     usage:  /<command>

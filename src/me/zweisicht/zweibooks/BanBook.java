@@ -9,13 +9,14 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class Ban {
+public class BanBook {
 
-	public static void Banbook(CommandSender sender) {
+	public static void Banbook_Create(CommandSender sender) {
 		
 		OfflinePlayer[] banlist = Bukkit.getServer().getBannedPlayers().toArray(new OfflinePlayer[0]);
 		List<String> pages = new ArrayList<String>();
@@ -56,7 +57,7 @@ public class Ban {
 			}
 			 
 		 }
-		CreateBook.CreateIt("Banbook", pages, (Player) sender);
+		GiveBook.CreateIt("Banbook", pages, (Player) sender, Material.WRITTEN_BOOK);
 	}
 	
 	public static String convertSimple(int i) {
