@@ -27,7 +27,8 @@ public class ZweiBooks extends JavaPlugin {
     {
     	
     	//Prüft ob der Spieler die Berechtigung hat.
-    	if(!sender.hasPermission("zweibooks."+ cmd)){
+    	if(!sender.hasPermission("zweibooks."+ commandlabel)){
+    		System.out.println(commandlabel);
     		sender.sendMessage("Du hast keine Berechtigung.");
     		return true;
     	}
