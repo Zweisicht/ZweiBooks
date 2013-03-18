@@ -25,12 +25,11 @@ public class SaveBook {
 		FileWriter fstream = new FileWriter("plugins/ZweiData/Books/" + meta.getTitle());
 		BufferedWriter out = new BufferedWriter(fstream);
 		for(int i = 0; i<length; i++){
-			player.sendMessage("Seite: " + i);
 			out.write(meta.getPage(i+1).toString() + "\n");
 			out.write("<p>\n");
 		}
 		out.close();
-		player.sendMessage("Fertig");
+		player.sendMessage("Das Buch wurde in die Bibliothek aufgenommen");
 	}
 
 }

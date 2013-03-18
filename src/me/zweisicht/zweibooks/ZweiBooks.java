@@ -1,5 +1,7 @@
 package me.zweisicht.zweibooks;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.bukkit.Bukkit;
@@ -23,35 +25,52 @@ public class ZweiBooks extends JavaPlugin {
 
     public boolean onCommand(CommandSender sender, Command cmd, String commandlabel,String[] args)
     {
+    	
+    	//Prüft ob der Spieler die Berechtigung hat.
+    	if(!sender.hasPermission("zweibooks."+ cmd)){
+    		sender.sendMessage("Du hast keine Berechtigung.");
+    		return true;
+    	}
+    		
     	//Ruft das Banbuch auf.
     	 if (cmd.getName().equalsIgnoreCase("banbook")){
  	    	BanBook.Banbook_Create(sender);
  	    	return true;
  	    }
-    	 //Der Spieler gibt sich selbst ein Buch.
+    	 //Ein Buch bekommen.
     	 if (cmd.getName().equalsIgnoreCase("book") && args.length >= 1){
     		 try {
 				OpenBook.GiveBook(sender, args[0], Material.WRITTEN_BOOK);
-			} catch (IOException e) {
-				e.printStackTrace();
+			} catch (FileNotFoundException e) {
+				sender.sendMessage("Das Buch existiert nicht.");
 			}
     		 return true;
   	    }
-    	 //Einen Spieler ein Buch geben.
+    	 //Ein Buch geben.
     	 if (cmd.getName().equalsIgnoreCase("givebook") && args.length >= 2){
     		 try {
-				OpenBook.GiveBook(Bukkit.getPlayer(args[0]), args[1], Material.WRITTEN_BOOK);
-			} catch (IOException e) {
-				e.printStackTrace();
+    			 for(Player player: Bukkit.getOnlinePlayers()){
+    				 if(player.getName().indexOf(args[0]) >= 0){
+    					
+    					OpenBook.GiveBook(Bukkit.getPlayer(args[0]), args[1], Material.WRITTEN_BOOK);
+    					sender.sendMessage("Das Buch wurde dem Spieler: " + args[0] + " gegeben.");
+    		    		return true;
+    					 
+    				 }
+
+    			 }
+    			 sender.sendMessage("Der Spieler ist nicht online.");
+			} catch (FileNotFoundException e) {
+				sender.sendMessage("Das Buch existiert nicht.");				
 			}
     		 return true;
   	    } 
-    	 //Ruft das Buch auf um es zu editieren. 
-    	 if (cmd.getName().equalsIgnoreCase("editbook") && args.length >= 1){
+    	 //Das Buch editieren. 
+    	 if (cmd.getName().equalsIgnoreCase("editbook") && args.length >= 1 ){
     		 try {
 				OpenBook.GiveBook(sender, args[0], Material.BOOK_AND_QUILL);
-			} catch (IOException e) {
-				e.printStackTrace();
+			} catch (FileNotFoundException e) {
+				sender.sendMessage("Das Buch existiert nicht.");
 			}
     		 return true;
   	    } 
@@ -60,16 +79,30 @@ public class ZweiBooks extends JavaPlugin {
     		 try {
 				OpenBook.GiveBook(sender, "Rulesbook", Material.WRITTEN_BOOK);
 			} catch (IOException e) {
-				e.printStackTrace();
+				sender.sendMessage("Das Buch existiert nicht.");
 			}
     		 return true;
     	 }
-    	 //Hier wird die Bücherliste aufgerufen.
+    	 //Bücherliste aufrufen.
     	 if (cmd.getName().equalsIgnoreCase("booklist")){
   	    	BookList.bookList((Player) sender);
     		 return true;
   	    }
-    	 //Ein erstelltes Buch in die Bibliothek aufnehmen.
+    	 //Buch löschen.
+    	 if (cmd.getName().equalsIgnoreCase("removebook")){
+  	    	
+    			File f;
+    			f= new File("plugins/ZweiData/Books/" + args[0]);
+    			
+    			if(f.exists()){
+    				f.delete();
+    				sender.sendMessage("Das Buch wurde gelöscht.");
+    			}else{
+    				sender.sendMessage("Das Buch wurde nicht gefunden.");
+    			}
+    		 return true;
+  	    }
+    	 //Buch in die Bibliothek aufnehmen.
     	 if (cmd.getName().equalsIgnoreCase("copybook")){
    	    	try {
 				SaveBook.CopyIT((Player) sender);

@@ -16,6 +16,7 @@ import org.bukkit.entity.Player;
 
 public class BanBook {
 
+	//Hier werden die gebannten Spieler rausgesucht. 
 	public static void Banbook_Create(CommandSender sender) {
 		
 		OfflinePlayer[] banlist = Bukkit.getServer().getBannedPlayers().toArray(new OfflinePlayer[0]);
@@ -31,14 +32,14 @@ public class BanBook {
 		pages.add("Die Ban-Liste\n------------\n Einträge: " + convertSimple(banlist.length) + "\n Stand: " + format.format(date));
 		 
 		String strPage = null;
-		 for (int x = 0; x < banlist.length; x++) {
+		int banlength = banlist.length;
+		 for (int x = 0; x < banlength; x++) {
 			 sortBanList.add(banlist[x].getName());
 		 }
 		 Collections.sort(sortBanList);
 
-		 for (int x = 0; x < banlist.length; x++) {
+		 for (int x = 0; x < banlength; x++) {
 			 
-			 //Sortieren
 			 if(strPage == null){
 				 strPage =  (x +1) + ". " + sortBanList.get(x);
 			 }else{
@@ -57,7 +58,7 @@ public class BanBook {
 			}
 			 
 		 }
-		GiveBook.CreateIt("Banbook", pages, (Player) sender, Material.WRITTEN_BOOK);
+		OpenBook.CreateIt("Banbook", pages, (Player) sender, Material.WRITTEN_BOOK);
 	}
 	
 	public static String convertSimple(int i) {

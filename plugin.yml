@@ -9,21 +9,32 @@ commands:
   banbook:
     description:  Zeigt euch alle Gebannten Spieler an.
     usage:  /<command>
+    permissions:  zweibooks.banbook
   book:
-    description: Ein beschriebenes Buch.
-    usage:  /<command> [Spieler] [Buch]
+    description: Gibt euch ein Buch aus der Bibliothek.
+    usage:  /<command> [Buch]
+    permissions:  zweibooks.book
   rulesbook:
     description: Das Regelbuch.
     usage:  /<command>
+    permissions:  zweibooks.rulesbook
   booklist:
     description: Zeigt die Liste der Buecher an.
     usage:  /<command>
+    permissions:  zweibooks.booklist
   copybook:
     description: Das Buch in der Hand wird gespeichert.
     usage:  /<command>
+    permissions:  zweibooks.copybook
   editbook:
     description: Editiert das Buch.
     usage:  /<command> [Buch]
+    permissions:  zweibooks.editbook
   givebook:
     description: Gibt einen Spieler ein Buch.
+    usage:  /<command> [Spieler] [Buch]
+    permissions:  zweibooks.givebook
+  removebook:
+    description: Entfernt ein Buch aus der Bibliothek.
     usage:  /<command>
+    permissions:  zweibooks.removebook
